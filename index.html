@@ -110,7 +110,7 @@
         <script>
             const ratingOptions = document.querySelectorAll('.rating-option');
             const selectedRatingInput = document.getElementById('selectedRating');
-            const missingItemsYes = document.getElementById('missingItemsYes');
+            const missingItemsNo = document.getElementById('missingItemsNo');
             const missingItemsComments = document.getElementById('missingItemsComments');
             const missingItemsCommentInput = document.getElementById('missingItemsComment');
     
@@ -122,13 +122,13 @@
                 });
             });
     
-            missingItemsYes.addEventListener('click', () => {
+            missingItemsNo.addEventListener('click', () => {
                 missingItemsComments.style.display = 'block';
                 missingItemsCommentInput.setAttribute('required', 'required');
             });
     
-            const missingItemsNo = document.getElementById('missingItemsNo');
-            missingItemsNo.addEventListener('click', () => {
+            const missingItemsYes = document.getElementById('missingItemsYes');
+            missingItemsYes.addEventListener('click', () => {
                 missingItemsComments.style.display = 'none';
                 missingItemsCommentInput.removeAttribute('required');
             });
