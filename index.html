@@ -1,138 +1,185 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Feedback Formular</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FeedbackForm</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
-            display: flex;
-            min-height: 100vh;
-            background-color: #BBBCBC;
+            font-family: Arial, sans-serif;
+            background-image: url('your-background-image.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
         }
-        .container {
-            max-width: 600px;
-            padding: 20px;
+
+        header {
+            background-color: rgba(0, 0, 0, 0.5);
+            color: #fff;
+            text-align: center;
+            padding: 1em 0;
         }
-        .rating-container {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-between;
-        }
-        .rating-option {
-            flex-basis: calc(20% - 10px);
-            margin-bottom: 10px;
-            cursor: pointer;
-            font-size: 16px;
-        }
-        #missingItemsComments {
-            display: none;
+
+        h1 {
+            margin: 0;
+            font-size: 2em;
         }
     </style>
 </head>
 <body>
-    <div class="container">
+    <header>
         <h1>Feedback Form</h1>
-        <hr>
-        <p>Thanks for taking your time, to give us Feedback.</p>
-        <form id="feedbackForm" action="#">
-            <label for="packaging">How would you rate the quality and condition of the packaging of the goods you received? </label>
-            <select id="packaging" name="packaging" required>
-                <option value="Excellent">Excellent</option>
-                <option value="Good">Good</option>
-                <option value="Fair">Fair</option>
-                <option value="Poor">Poor</option>
-            </select><br><br>
-    
-            <label for="ontime">Was your order delivered on time, according to your expected delivery date or timeframe? </label>
-            <select id="ontime" name="ontime" required>
-                <option value="Yes">Yes</option>
-                <option value="No">No</option>
-            </select><br><br>
-    
-            <label>How would you rate the quality of the goods you received?</label>
-            <div class="rating-container">
-                <div>
-                    <input type="radio" id="rating1" name="quality" value="1" required>
-                    <label for="rating1">Poor</label>
-                </div>
-                <div>
-                    <input type="radio" id="rating2" name="quality" value="2">
-                    <label for="rating2">Fair</label>
-                </div>
-                <div>
-                    <input type="radio" id="rating3" name="quality" value="3">
-                    <label for="rating3">Good</label>
-                </div>
-                <div>
-                    <input type="radio" id="rating4" name="quality" value="4">
-                    <label for="rating4">Very good</label>
-                </div>
-                <div>
-                    <input type="radio" id="rating5" name="quality" value="5">
-                    <label for="rating5">Excellent</label>
-                </div>
+    </header>
+
+    <!-- Introduction Page -->
+    <div class="introduction-container">
+        <p>This feedback form is designed to gather your thoughts and opinions. Please answer the questions honestly. Click the "Start" button to begin.</p>
+        <button onclick="startFeedback()">Start</button>
+    </div>
+
+    <!-- Question 1 -->
+    <div class="question-container" id="question1" style="display: none;">
+        <p>Do you know about our Dashboard?</p>
+        <select id="answerSelect1">
+            <option value="" selected disabled hidden>Select an option</option>
+            <option value="Yes">Yes</option>
+            <option value="No">No</option>
+        </select>
+        <button onclick="showNextQuestion()">Next</button>
+    </div>
+
+    <!-- Question 2 -->
+    <div class="question-container" id="question2" style="display: none;">
+        <p>How do you like our Dashboard?</p>
+        <div class="rating-container">
+            <div>
+                <input type="radio" id="rating1" name="quality" value="1" required>
+                <label for="rating1">Poor</label>
             </div>
-            <input type="hidden" id="selectedRating" name="quality" value="" required>
-            <br><br>
-    
-            <label for="missingItems">Did you receive all the items in your order?</label>
-            <input type="radio" id="missingItemsYes" name="missingItems" value="Yes">
-            <label for="missingItemsYes">Yes</label>
-            <input type="radio" id="missingItemsNo" name="missingItems" value="No">
-            <label for="missingItemsNo">No</label>
-            <br><br>
-            <div id="missingItemsComments">
-                <label for="missingItemsComment">Please provide details of the missing items:</label><br>
-                <textarea id="missingItemsComment" name="missingItemsComment" rows="4" cols="50"></textarea><br><br>
+            <div>
+                <input type="radio" id="rating2" name="quality" value="2">
+                <label for="rating2">Fair</label>
             </div>
-    
-    
-            <label for="supportQuality">How would you rate the quality of our customer support?</label>
-            <select id="supportQuality" name="supportQuality" required>
-                <option value="Excellent">Excellent</option>
-                <option value="Good">Good</option>
-                <option value="Fair">Fair</option>
-                <option value="Poor">Poor</option>
-            </select><br><br>
-            <label for="supportComment">Please provide specific information or comments about your experience with customer support:</label><br>
-            <textarea id="supportComment" name="supportComment" rows="4" cols="50"></textarea><br><br>
-    
-    
-            <label for="feedback">Any additional comments or suggestions for improvement:</label><br>
-            <textarea id="feedback" name="feedback" rows="4" cols="50"></textarea><br><br>
-    
-            <button type="submit">Submit</button>
-        </form>
-    
-        <script>
-            const ratingOptions = document.querySelectorAll('.rating-option');
-            const selectedRatingInput = document.getElementById('selectedRating');
-            const missingItemsNo = document.getElementById('missingItemsNo');
-            const missingItemsComments = document.getElementById('missingItemsComments');
-            const missingItemsCommentInput = document.getElementById('missingItemsComment');
-    
-            ratingOptions.forEach(option => {
-                option.addEventListener('click', () => {
-                    ratingOptions.forEach(option => option.classList.remove('selected'));
-                    option.classList.add('selected');
-                    selectedRatingInput.value = option.getAttribute('data-rating');
-                });
-            });
-    
-            missingItemsNo.addEventListener('click', () => {
-                missingItemsComments.style.display = 'block';
-                missingItemsCommentInput.setAttribute('required', 'required');
-            });
-    
-            const missingItemsYes = document.getElementById('missingItemsYes');
-            missingItemsYes.addEventListener('click', () => {
-                missingItemsComments.style.display = 'none';
-                missingItemsCommentInput.removeAttribute('required');
-            });
-        </script>
-    </body>
-    </html>
-    
+            <div>
+                <input type="radio" id="rating3" name="quality" value="3">
+                <label for="rating3">Good</label>
+            </div>
+            <div>
+                <input type="radio" id="rating4" name="quality" value="4">
+                <label for="rating4">Very good</label>
+            </div>
+            <div>
+                <input type="radio" id="rating5" name="quality" value="5">
+                <label for="rating5">Excellent</label>
+            </div>
+        </div>
+        <input type="hidden" id="selectedRating" name="quality" value="" required>
+        <br>
+        <button onclick="showNextQuestion3()">Next</button>
+    </div>
+
+    <!-- Question 3 -->
+    <div class="question-container" id="question3" style="display: none;">
+        <p>Any Ideas for Improvements for the Dashboard?</p>
+        <label for="commentary"></label>
+    <textarea id="commentary" rows="4" cols="50"></textarea>
+    <button onclick="showNextQuestion4()">Next</button>
+    </div>
+
+    <!-- Question 4 -->
+    <div class="question-container" id="question4" style="display: none;">
+        <p>How would you rate the communication between us?</p>
+        <div class="rating-container">
+            <div>
+                <input type="radio" id="rating1" name="quality" value="1" required>
+                <label for="rating1">Poor</label>
+            </div>
+            <div>
+                <input type="radio" id="rating2" name="quality" value="2">
+                <label for="rating2">Fair</label>
+            </div>
+            <div>
+                <input type="radio" id="rating3" name="quality" value="3">
+                <label for="rating3">Good</label>
+            </div>
+            <div>
+                <input type="radio" id="rating4" name="quality" value="4">
+                <label for="rating4">Very good</label>
+            </div>
+            <div>
+                <input type="radio" id="rating5" name="quality" value="5">
+                <label for="rating5">Excellent</label>
+            </div>
+        </div>
+        <input type="hidden" id="selectedRating" name="quality" value="" required>
+        <br>
+        <button onclick="showFinalMessage()">Submit</button>
+    </div>
+
+    <!-- Final Message -->
+    <div class="question-container" id="finalMessage" style="display: none;">
+        <p>Thank you for your feedback!</p>
+    </div>
+
+    <script>
+        function startFeedback() {
+            // Hide the introduction page
+            document.querySelector('.introduction-container').style.display = 'none';
+            
+            // Display the first question
+            document.getElementById('question1').style.display = 'block';
+        }
+
+        function showNextQuestion() {
+            // Hide the current question
+            document.getElementById('question1').style.display = 'none';
+            document.getElementById('question2').style.display = 'none';
+            document.getElementById('question3').style.display = 'none';
+            document.getElementById('question4').style.display = 'none';
+
+            // Get the selected answer
+            var selectedAnswer1 = document.getElementById('answerSelect1').value;
+
+            // Check the answer and decide whether to show the next question
+            if (selectedAnswer1 === 'Yes') {
+                // Display question 2
+                document.getElementById('question2').style.display = 'block';
+            } else if (selectedAnswer1 === 'No') {
+                // Skip Question 3 and display question 4
+                document.getElementById('question4').style.display = 'block';
+            }
+        }
+
+        function showNextQuestion3() {
+            // Show Question 3
+            document.getElementById('question1').style.display = 'none';
+            document.getElementById('question2').style.display = 'none';
+            document.getElementById('question3').style.display = 'block';
+            document.getElementById('question4').style.display = 'none';
+
+        }       
+
+        function showNextQuestion4() {
+            // Show Question 4
+            document.getElementById('question1').style.display = 'none';
+            document.getElementById('question2').style.display = 'none';
+            document.getElementById('question3').style.display = 'none';
+            document.getElementById('question4').style.display = 'block';
+
+        }   
+
+        function showFinalMessage() {
+            // Hide all questions
+            document.getElementById('question1').style.display = 'none';
+            document.getElementById('question2').style.display = 'none';
+            document.getElementById('question3').style.display = 'none';
+            document.getElementById('question4').style.display = 'none';
+
+            // Display the final message
+            document.getElementById('finalMessage').style.display = 'block';
+        }
+    </script>
+</body>
+</html>
