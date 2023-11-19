@@ -9,12 +9,15 @@
             margin: 0;
             padding: 0;
             font-family: Arial, sans-serif;
-            background-image: url('your-background-image.jpg');
+            background-image: url('https://cdn.discordapp.com/attachments/1084526115260989490/1175726930050416700/back.png');
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
+            text-align: center;
+            color: #fff;
+            text-align: center;
+            font-size: 20px;
         }
-
         header {
             background-color: rgba(0, 0, 0, 0.5);
             color: #fff;
@@ -26,22 +29,32 @@
             margin: 0;
             font-size: 2em;
         }
+        p {
+            margin: 0;
+            padding: 0px;
+        }
+        button {
+            font-size: 18px;
+            padding: 7.5px 10px; 
+        }
+
     </style>
 </head>
 <body>
     <header>
         <h1>Feedback Form</h1>
     </header>
-
+    <br>
     <!-- Introduction Page -->
     <div class="introduction-container">
-        <p>This feedback form is designed to gather your thoughts and opinions. Please answer the questions honestly. Click the "Start" button to begin.</p>
+        <p>This feedback form is designed to gather your thoughts and opinions. </p><p>Please answer the questions honestly. Click the "Start" button to begin.</p>
+        <br>
         <button onclick="startFeedback()">Start</button>
     </div>
 
     <!-- Question 1 -->
-    <div class="question-container" id="question1" style="display: none;">
-        <p>Do you know about our Dashboard?</p>
+    <div class="question-container" id="question1" style="display: none; font-size: 18px; padding: 7.5px 10px;">
+        <p>Are you familiar with our dashboard?</p>
         <select id="answerSelect1">
             <option value="" selected disabled hidden>Select an option</option>
             <option value="Yes">Yes</option>
@@ -51,10 +64,11 @@
     </div>
 
     <!-- Question 2 -->
-    <div class="question-container" id="question2" style="display: none;">
-        <p>How do you like our Dashboard? 1= lowest 10= highest</p>
+    <div class="question-container" id="question2" style="display: none; text-align: center;">
+        <p>How would you rate your satisfaction with our Dashboard on a scale from 1 to 10?</p>
         <div class="rating-container" style="display: flex;">
             <!-- Display the rating options in a line -->
+            <p>　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　</p>  <!-- Spaceholder because i couldn't center it -->
             <div><input type="radio" id="rating1" name="quality" value="1" required><label for="rating1">1</label></div>
             <div><input type="radio" id="rating2" name="quality" value="2"><label for="rating2">2</label></div>
             <div><input type="radio" id="rating3" name="quality" value="3"><label for="rating3">3</label></div>
@@ -73,15 +87,45 @@
 
     <!-- Question 3 -->
     <div class="question-container" id="question3" style="display: none;">
-        <p>Any Ideas for Improvements for the Dashboard?</p>
+        <p>Do you have any suggestions for improving our dashboard?</p>
         <label for="commentary"></label>
     <textarea id="commentary" rows="4" cols="50"></textarea>
     <button onclick="showNextQuestion4()">Next</button>
     </div>
 
-    <!-- Question 4 -->
-    <div class="question-container" id="question4" style="display: none;">
-        <p>How would you rate the communication between us?</p>
+        <!-- Question 4 -->
+        <div class="question-container" id="question4" style="display: none; font-size: 18px; padding: 7.5px 10px;">
+            <p>Was there an issue?</p>
+            <select id="answerSelect2">
+                <option value="" selected disabled hidden>Select an option</option>
+                <option value="Yes">Yes</option>
+                <option value="No">No</option>
+            </select>
+            <button onclick="showNextQuestion4()">Next</button>
+        </div>
+
+        <!-- Question 5 -->
+        <div class="question-container" id="question5" style="display: none; font-size: 18px; padding: 7.5px 10px;">
+            <p>Was the issue resolved promptly?</p>
+            <select id="answerSelect3">
+                <option value="" selected disabled hidden>Select an option</option>
+                <option value="Yes">Yes</option>
+                <option value="No">No</option>
+            </select>
+            <button onclick="showNextQuestion5()">Next</button>
+        </div>
+
+    <!-- Question 6 -->
+    <div class="question-container" id="question6" style="display: none;">
+        <p>Could you please share details about the issue so that we can prevent it in the future?</p>
+        <label for="commentary"></label>
+    <textarea id="commentary" rows="4" cols="50"></textarea>
+    <button onclick="showNextQuestion7()">Next</button>
+    </div>
+
+    <!-- Question 7 -->
+    <div class="question-container" id="question7" style="display: none;">
+        <p>How would you describe the quality of communication between us?</p>
         <div class="rating-container">
             <div>
                 <input type="radio" id="rating1" name="quality" value="1" required>
@@ -106,12 +150,61 @@
         </div>
         <input type="hidden" id="selectedRating" name="quality" value="" required>
         <br>
-        <button onclick="showFinalMessage()">Submit</button>
+        <button onclick="showNextQuestion8()">Submit</button>
     </div>
+
+        <!-- Question 8 -->
+        <div class="question-container" id="question8" style="display: none; text-align: center;">
+            <p>On a scale of 1 to 10, how would you rate the friendliness and helpfulness of our team?</p>
+            <div class="rating-container" style="display: flex;">
+                <!-- Display the rating options in a line -->
+                <p>　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　</p>  <!-- Spaceholder because i couldn't center it -->
+                <div><input type="radio" id="rating1" name="quality" value="1" required><label for="rating1">1</label></div>
+                <div><input type="radio" id="rating2" name="quality" value="2"><label for="rating2">2</label></div>
+                <div><input type="radio" id="rating3" name="quality" value="3"><label for="rating3">3</label></div>
+                <div><input type="radio" id="rating4" name="quality" value="4"><label for="rating4">4</label></div>
+                <div><input type="radio" id="rating5" name="quality" value="5"><label for="rating5">5</label></div>
+                <div><input type="radio" id="rating6" name="quality" value="6"><label for="rating6">6</label></div>
+                <div><input type="radio" id="rating7" name="quality" value="7"><label for="rating7">7</label></div>
+                <div><input type="radio" id="rating8" name="quality" value="8"><label for="rating8">8</label></div>
+                <div><input type="radio" id="rating9" name="quality" value="9"><label for="rating9">9</label></div>
+                <div><input type="radio" id="rating10" name="quality" value="10"><label for="rating10">10</label></div>
+            </div>
+            <input type="hidden" id="selectedRating" name="quality" value="" required>
+            <br>
+            <button onclick="showNextQuestion9()">Next</button>
+        </div>
+    <!-- Question 9 -->
+        <div class="question-container" id="question9" style="display: none;">
+            <p>What would you do differently in our position?</p>
+            <label for="commentary"></label>
+        <textarea id="commentary" rows="4" cols="50"></textarea>
+        <button onclick="showNextQuestion10()">Next</button>
+        </div>
+
+    <!-- Question 10 -->
+    <div class="question-container" id="question10" style="display: none; font-size: 18px; padding: 7.5px 10px;">
+        <p>Would you like to have more advisory sessions?</p>
+        <select id="answerSelect1">
+            <option value="Yes">Yes</option>
+            <option value="No">No</option>
+        </select>
+        <button onclick="showNextQuestion11()">Next</button>
+    </div>
+        <!-- Question 11 -->
+        <div class="question-container" id="question11" style="display: none;">
+            <p>Do you have any suggestions or valuable insights that could help us enhance your experience?</p>
+            <p> We'd love to hear your thoughts!</p>
+            <label for="commentary"></label>
+        <textarea id="commentary" rows="4" cols="50"></textarea>
+        <button onclick="showFinalMessage()">Next</button>
+        </div>
 
     <!-- Final Message -->
     <div class="question-container" id="finalMessage" style="display: none;">
-        <p>Thank you for your feedback!</p>
+        <p>Thank you for taking the time to share your valuable feedback with us!</p>
+        <p> Your insights are crucial in helping us improve and provide you with an 
+        <p> even better experience. We truly appreciate your contribution!</p>
     </div>
 
     <script>
@@ -129,6 +222,13 @@
             document.getElementById('question2').style.display = 'none';
             document.getElementById('question3').style.display = 'none';
             document.getElementById('question4').style.display = 'none';
+            document.getElementById('question5').style.display = 'none';
+            document.getElementById('question6').style.display = 'none';
+            document.getElementById('question7').style.display = 'none';
+            document.getElementById('question8').style.display = 'none';
+            document.getElementById('question9').style.display = 'none';
+            document.getElementById('question10').style.display = 'none';
+            document.getElementById('question11').style.display = 'none';
 
             // Get the selected answer
             var selectedAnswer1 = document.getElementById('answerSelect1').value;
@@ -149,24 +249,169 @@
             document.getElementById('question2').style.display = 'none';
             document.getElementById('question3').style.display = 'block';
             document.getElementById('question4').style.display = 'none';
-
+            document.getElementById('question5').style.display = 'none';
+            document.getElementById('question6').style.display = 'none';
+            document.getElementById('question7').style.display = 'none';
+            document.getElementById('question8').style.display = 'none';
+            document.getElementById('question9').style.display = 'none';
+            document.getElementById('question10').style.display = 'none';
+            document.getElementById('question11').style.display = 'none';
         }       
 
-        function showNextQuestion4() {
-            // Show Question 4
+    function showNextQuestion4() {
+    // Show Question 4
+    document.getElementById('question1').style.display = 'none';
+    document.getElementById('question2').style.display = 'none';
+    document.getElementById('question3').style.display = 'none';
+    document.getElementById('question4').style.display = 'block';
+    document.getElementById('question5').style.display = 'none';
+    document.getElementById('question6').style.display = 'none';
+    document.getElementById('question7').style.display = 'none';
+    document.getElementById('question8').style.display = 'none';
+     document.getElementById('question9').style.display = 'none';
+      document.getElementById('question10').style.display = 'none';
+     document.getElementById('question11').style.display = 'none';
+
+    // Get the selected answer
+    var selectedAnswer2 = document.getElementById('answerSelect2').value;
+
+    // Check the answer and decide whether to show the next question
+    if (selectedAnswer2 === 'Yes') {
+        // Display question 5
+        document.getElementById('question4').style.display = 'none';
+        document.getElementById('question5').style.display = 'block';
+    } else if (selectedAnswer2 === 'No') {
+        // Hide question 5 and display question 7
+        document.getElementById('question4').style.display = 'none';
+        document.getElementById('question7').style.display = 'block';
+    }
+}
+    function showNextQuestion5() {
+    // Show Question 5
+    document.getElementById('question1').style.display = 'none';
+    document.getElementById('question2').style.display = 'none';
+    document.getElementById('question3').style.display = 'none';
+    document.getElementById('question4').style.display = 'none';
+    document.getElementById('question5').style.display = 'block';
+    document.getElementById('question6').style.display = 'none';
+    document.getElementById('question7').style.display = 'none';
+    document.getElementById('question8').style.display = 'none';
+    document.getElementById('question9').style.display = 'none';
+    document.getElementById('question10').style.display = 'none';
+    document.getElementById('question11').style.display = 'none';
+
+    // Get the selected answer
+    var selectedAnswer3 = document.getElementById('answerSelect3').value;
+
+    // Check the answer and decide whether to show the next question
+    if (selectedAnswer3 === 'No') {
+        // Display question 6
+        document.getElementById('question5').style.display = 'none';
+        document.getElementById('question6').style.display = 'block';
+    } else if (selectedAnswer3 === 'Yes') {
+        // Goto question 7
+        document.getElementById('question5').style.display = 'none';
+        document.getElementById('question7').style.display = 'block';
+    }
+}
+        function showNextQuestion6() {
+            // Show Question 6
             document.getElementById('question1').style.display = 'none';
             document.getElementById('question2').style.display = 'none';
             document.getElementById('question3').style.display = 'none';
-            document.getElementById('question4').style.display = 'block';
+            document.getElementById('question4').style.display = 'none';
+            document.getElementById('question5').style.display = 'none';
+            document.getElementById('question6').style.display = 'block';
+            document.getElementById('question7').style.display = 'none';
+            document.getElementById('question8').style.display = 'none';
+            document.getElementById('question9').style.display = 'none';
+            document.getElementById('question10').style.display = 'none';
+            document.getElementById('question11').style.display = 'none';
+        }  
+        function showNextQuestion7() {
+            // Show Question 7
+            document.getElementById('question1').style.display = 'none';
+            document.getElementById('question2').style.display = 'none';
+            document.getElementById('question3').style.display = 'none';
+            document.getElementById('question4').style.display = 'none';
+            document.getElementById('question5').style.display = 'none';
+            document.getElementById('question6').style.display = 'none';
+            document.getElementById('question7').style.display = 'block';
+            document.getElementById('question8').style.display = 'none';
+            document.getElementById('question9').style.display = 'none';
+            document.getElementById('question10').style.display = 'none';
+            document.getElementById('question11').style.display = 'none';
+        }  
 
-        }   
-
+        function showNextQuestion8() {
+            // Show Question 8
+            document.getElementById('question1').style.display = 'none';
+            document.getElementById('question2').style.display = 'none';
+            document.getElementById('question3').style.display = 'none';
+            document.getElementById('question4').style.display = 'none';
+            document.getElementById('question5').style.display = 'none';
+            document.getElementById('question6').style.display = 'none';
+            document.getElementById('question7').style.display = 'none';
+            document.getElementById('question8').style.display = 'block';
+            document.getElementById('question9').style.display = 'none';
+            document.getElementById('question10').style.display = 'none';
+            document.getElementById('question11').style.display = 'none';
+        } 
+        function showNextQuestion9() {
+            // Show Question 9
+            document.getElementById('question1').style.display = 'none';
+            document.getElementById('question2').style.display = 'none';
+            document.getElementById('question3').style.display = 'none';
+            document.getElementById('question4').style.display = 'none';
+            document.getElementById('question5').style.display = 'none';
+            document.getElementById('question6').style.display = 'none';
+            document.getElementById('question7').style.display = 'none';
+            document.getElementById('question8').style.display = 'none';
+            document.getElementById('question9').style.display = 'block';
+            document.getElementById('question10').style.display = 'none';
+            document.getElementById('question11').style.display = 'none';
+        }  
+        function showNextQuestion10() {
+            // Show Question 10
+            document.getElementById('question1').style.display = 'none';
+            document.getElementById('question2').style.display = 'none';
+            document.getElementById('question3').style.display = 'none';
+            document.getElementById('question4').style.display = 'none';
+            document.getElementById('question5').style.display = 'none';
+            document.getElementById('question6').style.display = 'none';
+            document.getElementById('question7').style.display = 'none';
+            document.getElementById('question8').style.display = 'none';
+            document.getElementById('question9').style.display = 'none';
+            document.getElementById('question10').style.display = 'block';
+            document.getElementById('question11').style.display = 'none';
+        }  
+        function showNextQuestion11() {
+            // Show Question 11
+            document.getElementById('question1').style.display = 'none';
+            document.getElementById('question2').style.display = 'none';
+            document.getElementById('question3').style.display = 'none';
+            document.getElementById('question4').style.display = 'none';
+            document.getElementById('question5').style.display = 'none';
+            document.getElementById('question6').style.display = 'none';
+            document.getElementById('question7').style.display = 'none';
+            document.getElementById('question8').style.display = 'none';
+            document.getElementById('question9').style.display = 'none';
+            document.getElementById('question10').style.display = 'none';
+            document.getElementById('question11').style.display = 'block';
+        }  
         function showFinalMessage() {
             // Hide all questions
             document.getElementById('question1').style.display = 'none';
             document.getElementById('question2').style.display = 'none';
             document.getElementById('question3').style.display = 'none';
             document.getElementById('question4').style.display = 'none';
+            document.getElementById('question5').style.display = 'none';
+            document.getElementById('question6').style.display = 'none';
+            document.getElementById('question7').style.display = 'none';
+            document.getElementById('question8').style.display = 'none';
+            document.getElementById('question9').style.display = 'none';
+            document.getElementById('question10').style.display = 'none';
+            document.getElementById('question11').style.display = 'none';
 
             // Display the final message
             document.getElementById('finalMessage').style.display = 'block';
